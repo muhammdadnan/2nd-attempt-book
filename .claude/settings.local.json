@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install)",
+      "Bash(npm install prism-react-renderer)",
+      "Bash(npm install --save-dev prism-react-renderer)",
+      "Bash(npm run build)",
+      "Bash(npm install prism-react-renderer@2.3.1)",
+      "Bash(npm install @types/prismjs)",
+      "Bash(npm install prismjs)",
+      "Bash(cat docusaurus/sidebars.js)"
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+openapi: 3.0.0
+info:
+  title: RAG Chatbot API for Physical AI & Humanoid Robotics Book
+  description: API for querying the robotics book content using Retrieval-Augmented Generation
+  version: 1.0.0
+servers:
+  - url: http://localhost:8000
+    description: Local development server
+
+paths:
+  /query:
+    post:
+      summary: Query the book content using natural language
+      description: Submit a question about the robotics book content and receive an AI-generated response with references
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - question
+              properties:
+                question:
+                  type: string
+                  description: The question about the robotics book content
+                  example: "How do I set up ROS 2 for humanoid robot control?"
+                context_module:
+                  type: string
+                  description: Optional module to limit search context
+                  example: "module-1-ros2"
+      responses:
+        '200':
+          description: Successful response with answer and sources
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - answer
+                  - confidence
+                  - sources
+                properties:
+                  answer:
+                    type: string
+                    description: The AI-generated answer to the question
+                  confidence:
+                    type: number
+                    description: Confidence score between 0 and 1
+                    minimum: 0
+                    maximum: 1
+                  sources:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        chapter:
+                          type: string
+                          description: Chapter title where information was found
+                        module:
+                          type: string
+                          description: Module where information was found
+                        page_reference:
+                          type: string
+                          description: Page or section reference
+        '400':
+          description: Bad request - invalid input
+        '500':
+          description: Internal server error
+
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Check if the RAG chatbot service is running
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "healthy"
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2025-12-12T10:00:00Z"

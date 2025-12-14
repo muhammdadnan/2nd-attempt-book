@@ -1,0 +1,36 @@
+# Joint state controller
+joint_state_controller:
+  type: joint_state_broadcaster/JointStateBroadcaster
+
+# Example position controllers for the humanoid robot joints
+left_shoulder_controller:
+  type: position_controllers/JointPositionController
+  joint: left_shoulder_joint
+
+right_shoulder_controller:
+  type: position_controllers/JointPositionController
+  joint: right_shoulder_joint
+
+left_elbow_controller:
+  type: position_controllers/JointPositionController
+  joint: left_elbow_joint
+
+right_elbow_controller:
+  type: position_controllers/JointPositionController
+  joint: right_elbow_joint
+
+left_hip_controller:
+  type: position_controllers/JointPositionController
+  joint: left_hip_joint
+
+right_hip_controller:
+  type: position_controllers/JointPositionController
+  joint: right_hip_joint
+
+left_knee_controller:
+  type: position_controllers/JointPositionController
+  joint: left_knee_joint
+
+right_knee_controller:
+  type: position_controllers/JointPositionController
+  joint: right_knee_joint

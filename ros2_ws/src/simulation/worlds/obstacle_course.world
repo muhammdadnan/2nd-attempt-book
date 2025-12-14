@@ -1,0 +1,140 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="obstacle_course">
+    <!-- Include the sun -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Obstacles -->
+    <!-- Cube obstacle -->
+    <model name="cube_obstacle_1">
+      <pose>2.0 0.0 0.5 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>1.0 1.0 1.0</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>1.0 1.0 1.0</size>
+            </box>
+          </geometry>
+          <material>
+            <ambient>0.5 0.5 0.5 1</ambient>
+            <diffuse>0.8 0.8 0.8 1</diffuse>
+            <specular>0.1 0.1 0.1 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <mass>1.0</mass>
+          <inertia>
+            <ixx>0.166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.166667</iyy>
+            <iyz>0</iyz>
+            <izz>0.166667</izz>
+          </inertia>
+        </inertial>
+      </link>
+    </model>
+
+    <!-- Cylinder obstacle -->
+    <model name="cylinder_obstacle_1">
+      <pose>-2.0 1.5 0.75 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.5</radius>
+              <length>1.5</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.5</radius>
+              <length>1.5</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0.8 0.2 0.2 1</ambient>
+            <diffuse>1.0 0.3 0.3 1</diffuse>
+            <specular>0.2 0.05 0.05 1</specular>
+          </material>
+        </visual>
+        <inertial>
+          <mass>1.0</mass>
+          <inertia>
+            <ixx>0.3125</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.3125</iyy>
+            <iyz>0</iyz>
+            <izz>0.125</izz>
+          </inertia>
+        </inertial>
+      </link>
+    </model>
+
+    <!-- Ramp obstacle -->
+    <model name="ramp_obstacle_1">
+      <pose>0.0 -2.0 0.0 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>file://meshes/ramp.dae</uri>
+            </mesh>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>file://meshes/ramp.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <inertial>
+          <mass>10.0</mass>
+          <inertia>
+            <ixx>10.0</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>10.0</iyy>
+            <iyz>0</iyz>
+            <izz>10.0</izz>
+          </inertia>
+        </inertial>
+      </link>
+    </model>
+
+    <!-- Physics engine -->
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000.0</real_time_update_rate>
+      <gravity>0 0 -9.8</gravity>
+    </physics>
+
+    <!-- GUI configuration -->
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>0.481 -1.326 1.773 0.020 0.391 1.570</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
+</sdf>

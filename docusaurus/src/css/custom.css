@@ -1,0 +1,60 @@
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/* You can override the default Docusaurus styling here. */
+:root {
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-code-font-size: 95%;
+}
+
+/* Custom styles for robotics content */
+.robotics-diagram {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 16px 0;
+  text-align: center;
+}
+
+.ros-node {
+  background-color: #f0f8ff;
+  border: 1px solid #4a90e2;
+  border-radius: 4px;
+  padding: 8px;
+  margin: 4px;
+  display: inline-block;
+}
+
+.simulation-environment {
+  background-color: #f9f9f9;
+  border-left: 4px solid #4a90e2;
+  padding: 12px;
+  margin: 12px 0;
+}
+
+/* Code block styling for different technologies */
+.code-block-ros {
+  background-color: #fff8f0;
+}
+
+.code-block-isaac {
+  background-color: #f0f8f8;
+}
+
+.code-block-gazebo {
+  background-color: #f8f0f8;
+}
+
+.code-block-unity {
+  background-color: #f0f8f0;
+}

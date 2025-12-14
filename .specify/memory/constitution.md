@@ -1,55 +1,43 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- SYNC IMPACT REPORT:
+Version change: N/A -> 1.0.0
+List of modified principles: N/A (initial constitution)
+Added sections: All principles and sections (initial constitution)
+Removed sections: None
+Templates requiring updates: N/A (initial constitution)
+Follow-up TODOs: None
+-->
+
+# Physical AI & Humanoid Robotics — Full Book + Integrated RAG Chatbot Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Technical Accuracy
+All robotics and AI claims must reference official documentation (ROS 2, NVIDIA Isaac, Gazebo, Unity, OpenAI, etc.); Code samples must be validated in ROS 2 Humble + Gazebo Garden + Isaac Sim environments
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Clarity and Accessibility
+Explanations must follow 'learn → simulate → deploy' pedagogy; Content must be accessible to both intermediate and advanced learners in robotics and embodied AI
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Hands-On Reproducibility
+All code samples must be validated in actual environments; All examples must be reproducible through executable code, simulations, and project pipelines
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Modular Architecture
+Book structure must follow Docusaurus + Spec-Kit Plus conventions; Architecture must enable integration with Claude Code and structured specs
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Consistent Terminology
+Terminology must stay consistent across modules (ROS graph, namespaces, URDF, digital twin, VLA models); All MDX must be exportable to GitHub Pages without breaking builds
 
-### [PRINCIPLE_6_NAME]
+### Validated Code and Testing
+All code must be tested or validated via Spec-Kit Plus or Claude Code execution sandbox; Each module forms a coherent learning path: ROS → Simulation → Isaac → VLA
 
+## Structure and Format Standards
 
-[PRINCIPLE__DESCRIPTION]
+Four modules, each 8–12 chapters (minimum 40 total chapters); Each chapter must include: Learning objectives, Code examples, Simulation steps, At least one robotics diagram or flow explanation; RAG Chatbot must follow OpenAI Agents/ChatKit SDK + FastAPI + Neon Postgres + Qdrant stack
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Success Criteria and Validation
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Entire book compiles successfully in Docusaurus and deploys on GitHub Pages; RAG Chatbot answers questions using book content with 90%+ grounding accuracy; Final capstone robot completes a full Voice-to-Action task in simulation; Capstone must detail the end-to-end pipeline: Voice → LLM Planning → ROS 2 Actions → Navigation → Perception → Manipulation
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+Constitution supersedes all other practices; All implementations must follow the learn → simulate → deploy pedagogy; Amendments require documentation, approval, and migration plan; All PRs/reviews must verify compliance with robotics/AI standards and validation requirements
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-12-12 | **Last Amended**: 2025-12-12

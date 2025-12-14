@@ -1,0 +1,88 @@
+{
+  "isaac_sim_config": {
+    "simulation_settings": {
+      "physics_dt": 0.005,
+      "rendering_dt": 0.0166,
+      "stage_units_per_meter": 1.0,
+      "gravity": [0.0, 0.0, -9.81]
+    },
+    "robot_config": {
+      "usd_path": "assets/robot/humanoid_robot.usd",
+      "default_position": [0.0, 0.0, 0.8],
+      "default_orientation": [0.0, 0.0, 0.0, 1.0],
+      "scale": [1.0, 1.0, 1.0]
+    },
+    "sensor_config": {
+      "camera": {
+        "enabled": true,
+        "resolution": [640, 480],
+        "position": [0.2, 0.0, 0.1],
+        "orientation": [0.0, 0.0, 0.0, 1.0]
+      },
+      "imu": {
+        "enabled": true,
+        "position": [0.0, 0.0, 0.05],
+        "orientation": [0.0, 0.0, 0.0, 1.0]
+      },
+      "lidar": {
+        "enabled": false,
+        "type": "Velodyne_VLP-16"
+      }
+    },
+    "ros_bridge_config": {
+      "enabled": true,
+      "namespace": "isaac_sim",
+      "topics": {
+        "joint_states": "/isaac_sim/joint_states",
+        "robot_description": "/isaac_sim/robot_description",
+        "tf": "/isaac_sim/tf",
+        "tf_static": "/isaac_sim/tf_static"
+      }
+    },
+    "domain_randomization": {
+      "enabled": true,
+      "lighting": {
+        "intensity_range": [100, 500],
+        "color_temperature_range": [5000, 7000]
+      },
+      "materials": {
+        "albedo_range": [0.1, 1.0],
+        "roughness_range": [0.1, 0.9],
+        "metallic_range": [0.0, 0.1]
+      }
+    },
+    "synthetic_data": {
+      "enabled": true,
+      "output_path": "output/synthetic_data",
+      "annotations": ["bounding_box_2d_tight", "instance_segmentation", "depth_linear"]
+    }
+  },
+  "isaac_ros_pipeline": {
+    "perception_nodes": [
+      {
+        "name": "isaac_ros_image_pipeline",
+        "type": "image_processing",
+        "parameters": {
+          "input_topic": "/front_stereo_camera/left/image_rect_color",
+          "output_topic": "/front_stereo_camera/left/image_processed"
+        }
+      },
+      {
+        "name": "isaac_ros_vslam",
+        "type": "visual_slam",
+        "parameters": {
+          "input_topic": "/front_stereo_camera/left/image_rect_color",
+          "output_topic": "/visual_slam/pose"
+        }
+      },
+      {
+        "name": "isaac_ros_detection",
+        "type": "object_detection",
+        "parameters": {
+          "input_topic": "/front_camera/image_rect_color",
+          "output_topic": "/object_detection/labels"
+        }
+      }
+    ]
+  }
+}

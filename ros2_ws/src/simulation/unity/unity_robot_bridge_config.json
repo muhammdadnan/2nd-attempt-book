@@ -1,0 +1,42 @@
+{
+  "ros_bridge_config": {
+    "ros_tcp_endpoint": {
+      "host": "127.0.0.1",
+      "port": 10000
+    },
+    "robot_description": {
+      "urdf_path": "package://robot_description/urdf/humanoid_robot.urdf.xacro",
+      "tf_prefix": "unity_"
+    },
+    "joint_mapping": {
+      "left_shoulder_joint": "/joint_states/position/0",
+      "right_shoulder_joint": "/joint_states/position/1",
+      "left_elbow_joint": "/joint_states/position/2",
+      "right_elbow_joint": "/joint_states/position/3",
+      "left_hip_joint": "/joint_states/position/4",
+      "right_hip_joint": "/joint_states/position/5",
+      "left_knee_joint": "/joint_states/position/6",
+      "right_knee_joint": "/joint_states/position/7"
+    },
+    "sensor_topics": {
+      "imu": "/imu/data",
+      "camera": "/camera/image_raw"
+    },
+    "control_topics": {
+      "joint_commands": "/joint_group_position_controller/commands"
+    }
+  },
+  "unity_simulation_config": {
+    "physics_settings": {
+      "gravity": [0, -9.81, 0],
+      "solver_iterations": 8,
+      "solver_velocity_iterations": 1
+    },
+    "rendering_settings": {
+      "hdrp_enabled": true,
+      "realtime_gi": true,
+      "reflection_probes": true
+    },
+    "simulation_speed": 1.0
+  }
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="empty_world">
+    <!-- Include the sun -->
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Ground plane -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Physics engine -->
+    <physics type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000.0</real_time_update_rate>
+      <gravity>0 0 -9.8</gravity>
+    </physics>
+
+    <!-- GUI configuration -->
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>0.481 -1.326 1.773 0.020 0.391 1.570</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
+</sdf>

@@ -1,0 +1,173 @@
+openapi: 3.0.0
+info:
+  title: Vision-Language-Action Pipeline API
+  description: API for controlling the VLA (Vision-Language-Action) autonomous humanoid system
+  version: 1.0.0
+servers:
+  - url: http://localhost:9090
+    description: Local development server
+
+paths:
+  /voice-command:
+    post:
+      summary: Submit a voice command for the humanoid robot
+      description: Send a voice command to be processed through the VLA pipeline
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - audio_url
+                - command_context
+              properties:
+                audio_url:
+                  type: string
+                  description: URL to the audio file containing the voice command
+                command_context:
+                  type: string
+                  description: Context for the command (e.g., "kitchen", "office")
+                  enum: [kitchen, office, living_room, bedroom, outdoor]
+      responses:
+        '200':
+          description: Command successfully processed
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - command_id
+                  - status
+                  - action_plan
+                properties:
+                  command_id:
+                    type: string
+                    description: Unique identifier for the processed command
+                  status:
+                    type: string
+                    description: Processing status
+                    enum: [received, processing, planned, executing, completed, failed]
+                  action_plan:
+                    type: array
+                    description: Sequence of actions to execute
+                    items:
+                      type: object
+                      required:
+                        - action_type
+                        - parameters
+                      properties:
+                        action_type:
+                          type: string
+                          enum: [navigate, perceive, manipulate, wait]
+                        parameters:
+                          type: object
+                          description: Action-specific parameters
+        '400':
+          description: Bad request - invalid audio URL or context
+        '500':
+          description: Internal server error
+
+  /command/{command_id}:
+    get:
+      summary: Get status of a command
+      description: Retrieve the current status and progress of a VLA command
+      parameters:
+        - name: command_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Command status retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - status
+                  - progress
+                  - completed_actions
+                properties:
+                  status:
+                    type: string
+                    enum: [received, processing, planned, executing, completed, failed]
+                  progress:
+                    type: number
+                    description: Progress percentage
+                    minimum: 0
+                    maximum: 100
+                  completed_actions:
+                    type: array
+                    items:
+                      type: string
+                  current_action:
+                    type: string
+                    description: Currently executing action
+        '404':
+          description: Command not found
+        '500':
+          description: Internal server error
+
+  /simulate:
+    post:
+      summary: Run VLA simulation
+      description: Execute a VLA command in simulation environment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - voice_command
+                - simulation_environment
+              properties:
+                voice_command:
+                  type: string
+                  description: Text version of the voice command
+                  example: "Please clean the room"
+                simulation_environment:
+                  type: string
+                  description: Name of the simulation environment to use
+                  example: "living_room_01"
+                safety_constraints:
+                  type: object
+                  description: Safety parameters for the simulation
+      responses:
+        '200':
+          description: Simulation completed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - simulation_id
+                  - result
+                  - action_log
+                properties:
+                  simulation_id:
+                    type: string
+                    description: Unique identifier for the simulation run
+                  result:
+                    type: string
+                    enum: [success, partial_success, failed]
+                  action_log:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        timestamp:
+                          type: string
+                          format: date-time
+                        action:
+                          type: string
+                        status:
+                          type: string
+                        details:
+                          type: string
+        '400':
+          description: Bad request - invalid parameters
+        '500':
+          description: Internal server error
