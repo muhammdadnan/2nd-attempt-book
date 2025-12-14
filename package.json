@@ -1,0 +1,12 @@
+{
+  "name": "2nd-attempt-book-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd docusaurus && npm run build",
+    "dev": "cd docusaurus && npm run start"
+  },
+  "engines": {
+    "node": ">=18.0"
+  }
+}
