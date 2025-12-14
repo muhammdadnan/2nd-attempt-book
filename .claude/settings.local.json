@@ -8,7 +8,8 @@
       "Bash(npm install prism-react-renderer@2.3.1)",
       "Bash(npm install @types/prismjs)",
       "Bash(npm install prismjs)",
-      "Bash(cat docusaurus/sidebars.js)"
+      "Bash(cat docusaurus/sidebars.js)",
+      "Bash(git push origin main)"
     ]
   }
 }
